@@ -1,0 +1,51 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SiteMaster.master.cs" Inherits="DiseñoWeb.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="assets/Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <asp:LinkButton runat="server" ID="lnklogin" OnClick="lnklogin_Click" class="nav-link" >Login <span class="sr-only">(current)</span></asp:LinkButton>
+                    </li>
+                    <li class="nav-item">
+                        <asp:LinkButton runat="server" ID="lnkprincipal" OnClick="lnkprincipal_Click" class="nav-link" >Principal</asp:LinkButton>
+                    </li>
+                    <li class="nav-item">
+                        <asp:LinkButton runat="server" ID="lnkSoporte" OnClick="lnkSoporte_Click" class="nav-link" >Soporte</asp:LinkButton>
+                    </li>
+                   <%-- <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown link
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>--%>
+                </ul>
+            </div>
+        </nav>
+
+
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                <%-- Aqui se renderizan los formularios --%>
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+    <script src="assets/Bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
