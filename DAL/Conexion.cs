@@ -15,7 +15,7 @@ namespace DAL
         private static string Password = "";
         private static string BaseDatos = "Clientes";
 
-        public static string ConexionString(bool sqlAutenticaton=false)
+        public static string ConexionString(bool sqlAutenticaton=true)
         {
             SqlConnectionStringBuilder constructor = new SqlConnectionStringBuilder();
             constructor.ApplicationName= NombreAplicacion;

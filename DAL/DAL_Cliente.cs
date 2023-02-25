@@ -18,6 +18,11 @@ namespace DAL
                 bd.Open();
                 SqlCommand cmd = new SqlCommand("InsertCliente", bd);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Nombre", Entidad.Nombre);
+                cmd.Parameters.AddWithValue("@Celular", Entidad.Celular);
+                cmd.Parameters.AddWithValue("@Correo", Entidad.Correo);
+                cmd.Parameters.AddWithValue("IdUsuarioRegistra", Entidad.IdUsuarioRegistra);
+                return Convert.ToInt32(cmd.ExecuteScalar());
             }
             
 
