@@ -55,7 +55,7 @@ namespace DAL
             }
         }
 
-        public static DataTable DeleteCliente(int IdCliente)
+        public static DataTable SelectCliente(int IdCliente)
         {
             using (SqlConnection bd = new SqlConnection(Conexion.ConexionString()))
             {
