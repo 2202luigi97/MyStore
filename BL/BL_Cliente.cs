@@ -12,7 +12,7 @@ namespace BL
     {
         public static int InsertCliente(Cliente Entidad)
         {
-            return DAL_Cliente.InsertCliente(Entidad);
+            return DAL_Cliente.InsertCliente(Entidad); 
         }
     }
 }
