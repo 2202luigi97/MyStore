@@ -1,28 +1,31 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EL
 {
-    public class Cliente
+    [Table("RolPermisos")]
+    public class RolPermisos
     {
         [Key]
-        public int IdCliente { get; set; }
+        public int IdRolPermiso { get; set; }
+
         [Required]
-        [MaxLength(200)]
-        public string Nombre { get; set; }
+        public int IdRol { get; set; }
+
         [Required]
-        [MaxLength(10)]
-        public string Celular { get; set; }
-        [Required]
-        [MaxLength(200)]
-        public string Correo { get; set;}
+        public int IdPermiso { get; set; }
+
         [Required]
         public bool Activo { get; set; }
+
         [Required]
         public int IdUsuarioRegistra { get; set; }
+
         [Required]
         public DateTime FechaRegistro { get; set; }
+
         public int? IdUsuarioActualiza { get; set; }
-        public DateTime? FechaActualizacion { get; set;}
+        public DateTime? FechaActualizacion { get; set; }
     }
 }

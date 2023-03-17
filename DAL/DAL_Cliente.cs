@@ -11,6 +11,7 @@ namespace DAL
 {
     public static class DAL_Cliente
     {
+        //metodo de insertar con SP
         public static int InsertCliente(Cliente Entidad)
         {
             using (SqlConnection bd = new SqlConnection(Conexion.ConexionString()))
@@ -26,6 +27,16 @@ namespace DAL
             }
         }
 
+        //metodo de insertar con entity framework
+        public static Cliente Insert(Cliente Entidad)
+        {
+            using (BDContexto bd = new BDContexto()) 
+            {
+                bd.Cliente.Add(Entidad);
+                bd.SaveChanges();
+                return Entidad;
+            }
+        }
         public static int UpdateCliente(Cliente Entidad)
         {
             using (SqlConnection bd = new SqlConnection(Conexion.ConexionString()))

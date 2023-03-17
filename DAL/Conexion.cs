@@ -1,27 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.SqlClient;
 
 namespace DAL
 {
-    public  class Conexion
+    public static class Conexion
     {
         private static string NombreAplicacion = "DiseñoWeb";
-        private static string Servidor = "DESKTOP-FL8S9TQ\\SQLEXPRESS";
-        private static string Usuario = "";
-        private static string Password = "";
+        private static string Servidor = @"DESKTOP-FL8S9TQ\SQLEXPRESS";
+        private static string Usuario = "luigi";
+        private static string Password = "&cuadra&";
         private static string BaseDatos = "Clientes";
 
-        public static string ConexionString(bool sqlAutenticaton=true)
+        public static string ConexionString(bool sqlAutenticaton = true)
         {
-            SqlConnectionStringBuilder constructor = new SqlConnectionStringBuilder();
-            constructor.ApplicationName= NombreAplicacion;
-            constructor.DataSource = Servidor;
-            constructor.InitialCatalog = BaseDatos;
-            constructor.IntegratedSecurity = sqlAutenticaton;
+            SqlConnectionStringBuilder constructor = new SqlConnectionStringBuilder()
+            {
+            ApplicationName = NombreAplicacion,
+            DataSource = Servidor,
+            InitialCatalog = BaseDatos,
+            IntegratedSecurity = sqlAutenticaton
+        };
             if (sqlAutenticaton ) 
             {
                 constructor.UserID = Usuario;
