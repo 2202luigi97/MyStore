@@ -46,8 +46,7 @@ namespace DiseñoWeb
             string Html = "<div style = text-align:justify> " + msj + " </div>";
             return Html;
         }
-        private bool validarAccesos
-            ()
+        private bool validarAccesos()
         {
             if (string.IsNullOrEmpty(txtUsuario.Text) || string.IsNullOrWhiteSpace(txtUsuario.Text))
             {
@@ -64,6 +63,7 @@ namespace DiseñoWeb
                 Mensaje("Credenciales Incorrectas", eMessage.Alerta);
                 return false;
             }
+            Mensaje("Acceso Correcto", eMessage.Exito);
             return true;
         }
         #endregion
