@@ -2,5 +2,5 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <%-- Formulario Principal --%>
-    <h1>Formulario Principal</h1>
+    <h1>Bienvenido</h1>
 </asp:Content>

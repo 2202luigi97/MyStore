@@ -16,7 +16,7 @@ namespace DiseñoWeb
 
         protected void lnklogin_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Login.aspx");
+            //R/*esponse.Redirect("~/Login.aspx");*/
         }
 
         protected void lnkprincipal_Click(object sender, EventArgs e)
@@ -26,7 +26,7 @@ namespace DiseñoWeb
 
         protected void lnkSoporte_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Soporte.aspx");
+            Response.Redirect("~/Secundaria.aspx");
         }
     }
 }
