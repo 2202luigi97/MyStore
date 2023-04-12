@@ -7,6 +7,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using static EL.Enums;
 using BL;
+using System.Text;
+using Utilidades;
 
 namespace DiseñoWeb
 {
@@ -61,6 +63,17 @@ namespace DiseñoWeb
             if (!BL_Usuarios.ExisteUserName(txtUsuario.Text)) 
             {
                 Mensaje("Credenciales Incorrectas", eMessage.Alerta);
+                return false;
+            }
+            if (BL_Usuarios.VerificarCuentaBloqueada(txtUsuario.Text))
+            {
+                Mensaje(Justify("Su cuenta ha sido bloqueada por multiples intentos fallidos de iniciar sesion"), eMessage.Error,"",true,true,false,"",false);
+                return false;
+            }
+            byte[] password = Encripty.Encrypt(txtPassword.Text);
+            if (!BL_Usuarios.ValidarCredenciales(txtUsuario.Text,password))
+            {
+                Mensaje(Justify("Credenciales Incorrectas, si supera 3 intentos fallidos de inicio de sesion su cuenta será bloqueada"), eMessage.Alerta, "", true);
                 return false;
             }
             Mensaje("Acceso Correcto", eMessage.Exito);

@@ -29,7 +29,7 @@ namespace EL
         public bool Bloqueado { get; set; }
 
         [Required]
-        public byte IntentosFallidos { get; set; }
+        public short IntentosFallidos { get; set; }
 
         [Required]
         public int IdRol { get; set; }

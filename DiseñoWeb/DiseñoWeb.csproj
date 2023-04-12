@@ -74,28 +74,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="asset\bootstrap-5.2.0\css\bootstrap-grid.css" />
-    <Content Include="asset\bootstrap-5.2.0\css\bootstrap-grid.min.css" />
-    <Content Include="asset\bootstrap-5.2.0\css\bootstrap-grid.rtl.css" />
-    <Content Include="asset\bootstrap-5.2.0\css\bootstrap-grid.rtl.min.css" />
-    <Content Include="asset\bootstrap-5.2.0\css\bootstrap-reboot.css" />
-    <Content Include="asset\bootstrap-5.2.0\css\bootstrap-reboot.min.css" />
-    <Content Include="asset\bootstrap-5.2.0\css\bootstrap-reboot.rtl.css" />
-    <Content Include="asset\bootstrap-5.2.0\css\bootstrap-reboot.rtl.min.css" />
-    <Content Include="asset\bootstrap-5.2.0\css\bootstrap-utilities.css" />
-    <Content Include="asset\bootstrap-5.2.0\css\bootstrap-utilities.min.css" />
-    <Content Include="asset\bootstrap-5.2.0\css\bootstrap-utilities.rtl.css" />
-    <Content Include="asset\bootstrap-5.2.0\css\bootstrap-utilities.rtl.min.css" />
-    <Content Include="asset\bootstrap-5.2.0\css\bootstrap.css" />
-    <Content Include="asset\bootstrap-5.2.0\css\bootstrap.min.css" />
-    <Content Include="asset\bootstrap-5.2.0\css\bootstrap.rtl.css" />
-    <Content Include="asset\bootstrap-5.2.0\css\bootstrap.rtl.min.css" />
-    <Content Include="asset\bootstrap-5.2.0\js\bootstrap.bundle.js" />
-    <Content Include="asset\bootstrap-5.2.0\js\bootstrap.bundle.min.js" />
-    <Content Include="asset\bootstrap-5.2.0\js\bootstrap.esm.js" />
-    <Content Include="asset\bootstrap-5.2.0\js\bootstrap.esm.min.js" />
-    <Content Include="asset\bootstrap-5.2.0\js\bootstrap.js" />
-    <Content Include="asset\bootstrap-5.2.0\js\bootstrap.min.js" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\css\bootstrap-grid.css" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\css\bootstrap-grid.min.css" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\css\bootstrap-grid.rtl.css" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\css\bootstrap-grid.rtl.min.css" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\css\bootstrap-reboot.css" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\css\bootstrap-reboot.min.css" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\css\bootstrap-reboot.rtl.css" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\css\bootstrap-reboot.rtl.min.css" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\css\bootstrap-utilities.css" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\css\bootstrap-utilities.min.css" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\css\bootstrap-utilities.rtl.css" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\css\bootstrap-utilities.rtl.min.css" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\css\bootstrap.css" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\css\bootstrap.min.css" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\css\bootstrap.rtl.css" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\css\bootstrap.rtl.min.css" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\js\bootstrap.bundle.js" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\js\bootstrap.bundle.min.js" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\js\bootstrap.esm.js" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\js\bootstrap.esm.min.js" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\js\bootstrap.js" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\js\bootstrap.min.js" />
     <Content Include="asset\CSS\Login.css" />
     <Content Include="asset\Fontawesome\css\all.css" />
     <Content Include="asset\Fontawesome\css\all.min.css" />
@@ -2192,28 +2192,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="asset\bootstrap-5.2.0\css\bootstrap-grid.css.map" />
-    <Content Include="asset\bootstrap-5.2.0\css\bootstrap-grid.min.css.map" />
-    <Content Include="asset\bootstrap-5.2.0\css\bootstrap-grid.rtl.css.map" />
-    <Content Include="asset\bootstrap-5.2.0\css\bootstrap-grid.rtl.min.css.map" />
-    <Content Include="asset\bootstrap-5.2.0\css\bootstrap-reboot.css.map" />
-    <Content Include="asset\bootstrap-5.2.0\css\bootstrap-reboot.min.css.map" />
-    <Content Include="asset\bootstrap-5.2.0\css\bootstrap-reboot.rtl.css.map" />
-    <Content Include="asset\bootstrap-5.2.0\css\bootstrap-reboot.rtl.min.css.map" />
-    <Content Include="asset\bootstrap-5.2.0\css\bootstrap-utilities.css.map" />
-    <Content Include="asset\bootstrap-5.2.0\css\bootstrap-utilities.min.css.map" />
-    <Content Include="asset\bootstrap-5.2.0\css\bootstrap-utilities.rtl.css.map" />
-    <Content Include="asset\bootstrap-5.2.0\css\bootstrap-utilities.rtl.min.css.map" />
-    <Content Include="asset\bootstrap-5.2.0\css\bootstrap.css.map" />
-    <Content Include="asset\bootstrap-5.2.0\css\bootstrap.min.css.map" />
-    <Content Include="asset\bootstrap-5.2.0\css\bootstrap.rtl.css.map" />
-    <Content Include="asset\bootstrap-5.2.0\css\bootstrap.rtl.min.css.map" />
-    <Content Include="asset\bootstrap-5.2.0\js\bootstrap.bundle.js.map" />
-    <Content Include="asset\bootstrap-5.2.0\js\bootstrap.bundle.min.js.map" />
-    <Content Include="asset\bootstrap-5.2.0\js\bootstrap.esm.js.map" />
-    <Content Include="asset\bootstrap-5.2.0\js\bootstrap.esm.min.js.map" />
-    <Content Include="asset\bootstrap-5.2.0\js\bootstrap.js.map" />
-    <Content Include="asset\bootstrap-5.2.0\js\bootstrap.min.js.map" />
     <Content Include="asset\Fontawesome\less\brands.less" />
     <Content Include="asset\Fontawesome\less\fontawesome.less" />
     <Content Include="asset\Fontawesome\less\regular.less" />
@@ -2267,6 +2245,28 @@
     <Content Include="asset\Fontawesome\webfonts\fa-v4compatibility.woff2" />
     <Content Include="asset\JQuery\jquery.min.map" />
     <Content Include="asset\JQuery\jquery.slim.min.map" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\css\bootstrap-grid.css.map" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\css\bootstrap-grid.min.css.map" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\css\bootstrap-grid.rtl.css.map" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\css\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\css\bootstrap-reboot.css.map" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\css\bootstrap-reboot.min.css.map" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\css\bootstrap-reboot.rtl.css.map" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\css\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\css\bootstrap-utilities.css.map" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\css\bootstrap-utilities.min.css.map" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\css\bootstrap-utilities.rtl.css.map" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\css\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\css\bootstrap.css.map" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\css\bootstrap.min.css.map" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\css\bootstrap.rtl.css.map" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\css\bootstrap.rtl.min.css.map" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\js\bootstrap.bundle.js.map" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\js\bootstrap.bundle.min.js.map" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\js\bootstrap.esm.js.map" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\js\bootstrap.esm.min.js.map" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\js\bootstrap.js.map" />
+    <Content Include="asset\bootstrap-5.3.0-alpha3-dist\js\bootstrap.min.js.map" />
     <None Include="packages.config" />
     <Content Include="SiteMaster.Master" />
     <None Include="Web.Debug.config">
@@ -2284,6 +2284,10 @@
     <ProjectReference Include="..\EL\EL.csproj">
       <Project>{98aa6c30-f6ef-40ac-82c0-45b57f731f7d}</Project>
       <Name>EL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilidades\Utilidades.csproj">
+      <Project>{21bf77dc-5d36-4f8f-8c02-663e2be7123f}</Project>
+      <Name>Utilidades</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -63,6 +63,10 @@
       <Project>{98aa6c30-f6ef-40ac-82c0-45b57f731f7d}</Project>
       <Name>EL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Utilidades\Utilidades.csproj">
+      <Project>{21bf77dc-5d36-4f8f-8c02-663e2be7123f}</Project>
+      <Name>Utilidades</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
