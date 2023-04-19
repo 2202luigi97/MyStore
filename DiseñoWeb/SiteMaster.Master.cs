@@ -86,6 +86,11 @@ namespace DiseñoWeb
             try
             {
                 List<RolFormularios> FormulariosUser = (List<RolFormularios>)Session["RolFormularioGl"];
+                if(FormulariosUser==null) 
+                {
+                    AbandonarSesion();
+                    return false;
+                }
                 if (!(FormulariosUser.Count > 0))
                 {
                     AbandonarSesion(false);

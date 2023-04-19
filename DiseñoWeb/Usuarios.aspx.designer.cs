@@ -150,6 +150,15 @@ namespace DiseñoWeb
         protected global::System.Web.UI.WebControls.LinkButton lnkAnular;
 
         /// <summary>
+        /// Control HF_IdUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HF_IdUsuario;
+
+        /// <summary>
         /// Control gvUsuarios.
         /// </summary>
         /// <remarks>

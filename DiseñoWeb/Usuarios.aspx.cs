@@ -16,9 +16,10 @@ namespace DiseñoWeb
         protected void Page_Load(object sender, EventArgs e)
         {
             ValidarSesion();
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 CargarGrid();
+                CargarRoles();
             }
         }
         #region Metodos y Funciones
@@ -100,14 +101,14 @@ namespace DiseñoWeb
                 List<RolPermisos> PermisosUser = BL_RolPermiso.List(IdRolGl);
                 panelBtnLimpiar.Visible = true;
                 panelBtnGuardar.Visible = false;
-                panelBtnAnular.Visible= false;
+                panelBtnAnular.Visible = false;
                 if (PermisosUser.Count > 0)
                 {
                     foreach (var PermisoUser in PermisosUser)
                     {
-                        if(PermisoUser.IdPermiso==(int)ePermisos.Escritura)
+                        if (PermisoUser.IdPermiso == (int)ePermisos.Escritura)
                         {
-                            panelBtnGuardar.Visible = true; 
+                            panelBtnGuardar.Visible = true;
                         }
                         if (PermisoUser.IdPermiso == (int)ePermisos.Anular)
                         {
@@ -129,9 +130,125 @@ namespace DiseñoWeb
             gvUsuarios.DataSource = BL_Usuarios.vUsuarios();
             gvUsuarios.DataBind();
         }
-        #endregion
-        #region Eventos
+        private void CargarRoles()
+        {
+            try
+            {
+                ddlRol.Items.Clear();
+                ddlRol.Items.Insert(0, new ListItem("--Seleccione--"));
+                ddlRol.DataSource = BL_Roles.List();
+                ddlRol.DataValueField = "IdRol";
+                ddlRol.DataTextField = "Rol";
+                ddlRol.DataBind();
+            }
+            catch
+            {
 
+                Mensaje("Error al cargar los roles", eMessage.Error);
+            }
+        }
+        private bool ValidarInsertar()
+        {
+            if (string.IsNullOrEmpty(txtNombre.Text) || string.IsNullOrWhiteSpace(txtNombre.Text))
+            {
+                Mensaje("Ingrese el nombre completo", eMessage.Alerta);
+                return false;
+            }
+            if (string.IsNullOrEmpty(txtCorreo.Text) || string.IsNullOrWhiteSpace(txtCorreo.Text))
+            {
+                Mensaje("Ingrese el Correo del usuario", eMessage.Alerta);
+                return false;
+            }
+            if(!General.CorreoEsValido(txtCorreo.Text))
+            {
+                Mensaje("Ingrese un correo válido", eMessage.Alerta);
+                return false;
+            }
+            if (string.IsNullOrEmpty(txtUsuario.Text) || string.IsNullOrWhiteSpace(txtUsuario.Text))
+            {
+                Mensaje("Ingrese el login del usuario", eMessage.Alerta);
+                return false;
+            }
+            if (BL_Usuarios.ExisteUserName(txtUsuario.Text)) 
+            {
+                Mensaje("El login Ya existe en el Sistema", eMessage.Alerta);
+                return false;
+            }
+            if (string.IsNullOrEmpty(txtContraseña.Text) || string.IsNullOrWhiteSpace(txtContraseña.Text))
+            {
+                Mensaje("Ingrese la contraseña del usuario", eMessage.Alerta);
+                return false;
+            }
+            if (!General.validarComplejidadPassword(txtContraseña.Text))
+            {
+                Mensaje("La contraseña no cumple con los requisitos", eMessage.Alerta);
+                return false;
+            }
+            if (ddlRol.SelectedIndex== 0) 
+            {
+                Mensaje("Seleccione el rol del usuario", eMessage.Alerta);
+                return false;
+            }
+            return true;
+        }
+        private bool ValidarActualizar()
+        {
+            return true;
+        }
+        private void Guardar()
+        {
+            try
+            {
+                int IdRegistro = (int)General.ValidarEnteros(HF_IdUsuario.Value);
+                if (IdRegistro > 0)
+                {
+                    //Actualizando
+                    return;
+                }
+                //Agregando
+                if (ValidarInsertar())
+                {
+                    return;
+                }
+            }
+            catch 
+            {
+           
+            }         
+        }
+        #endregion
+
+        #region Eventos
+        protected void MostrarContraseña_Click(object sender, EventArgs e)
+        {
+            if (txtContraseña.TextMode == TextBoxMode.SingleLine)
+            {
+                txtContraseña.TextMode = TextBoxMode.Password;
+                IconoConstraseña.Attributes.Remove("fas fa-eye-slash");
+                IconoConstraseña.Attributes.Add("class", "fas fa-eye");
+                return;
+            }
+            txtContraseña.TextMode = TextBoxMode.SingleLine;
+            IconoConstraseña.Attributes.Remove("fas fa-eye");
+            IconoConstraseña.Attributes.Add("class", "fas fa-eye-slash");
+
+        }
+        protected void lnkVolver_Click(object sender, EventArgs e)
+        {
+
+        }
+        protected void lnkLimpiar_Click(object sender, EventArgs e)
+        {
+
+        }
+        protected void lnkGuardar_Click(object sender, EventArgs e)
+        {
+            Guardar();
+        }
+        protected void lnkAnular_Click(object sender, EventArgs e)
+        {
+
+        }
         #endregion
     }
 }
