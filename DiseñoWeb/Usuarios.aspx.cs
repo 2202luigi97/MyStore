@@ -2,7 +2,6 @@
 using EL;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -12,13 +11,17 @@ using static EL.Enums;
 
 namespace DiseñoWeb
 {
-    public partial class Principal : System.Web.UI.Page
+    public partial class Formulario_31 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             ValidarSesion();
+            if(!IsPostBack)
+            {
+                CargarGrid();
+            }
         }
-        #region Metodos Y Funciones
+        #region Metodos y Funciones
         private void Mensaje(string Message, eMessage tipoMensaje, string Encabezado = "", bool Html = false, bool Fondo = false, bool returnLogin = false, string UrlReturn = "", bool CerrarClick = true)
         {
             //icon -->      success,warning, error,  info
@@ -59,29 +62,6 @@ namespace DiseñoWeb
                 Mensaje("Inicie Sesión Nuevamente", eMessage.Info, "Datos de Sesión Incompletos", false, true, true, "/Login.aspx", false);
             }
         }
-        private void VerificarPermisosFormularios(List<RolFormularios> RolFormularios)
-        {
-            PanelVenta.Visible = false;
-            PanelProducto.Visible = false;
-            PanelUsuario.Visible = false;
-
-            foreach (var RolFormulario in RolFormularios)
-            {
-                if (RolFormulario.IdFormulario == (int)eFormulario.AdministracionUsuarios)
-                {
-                    PanelUsuario.Visible = true;
-                }
-                if (RolFormulario.IdFormulario == (int)eFormulario.Productos)
-                {
-                    PanelProducto.Visible = true;
-                }
-                if (RolFormulario.IdFormulario == (int)eFormulario.Ventas)
-                {
-                    PanelVenta.Visible = true;
-                }
-            }
-
-        }
         private bool ValidarSesion()
         {
             try
@@ -116,8 +96,25 @@ namespace DiseñoWeb
                     Mensaje("Estimado usuario, No cuenta con permisos necesarios para ingresar a ningun formulario", eMessage.Info, "", false, true, true, "/Login.aspx", false);
                     return false;
                 }
-                VerificarPermisosFormularios(FormulariosUser);
                 Session["RolFormularioGl"] = FormulariosUser;
+                List<RolPermisos> PermisosUser = BL_RolPermiso.List(IdRolGl);
+                panelBtnLimpiar.Visible = true;
+                panelBtnGuardar.Visible = false;
+                panelBtnAnular.Visible= false;
+                if (PermisosUser.Count > 0)
+                {
+                    foreach (var PermisoUser in PermisosUser)
+                    {
+                        if(PermisoUser.IdPermiso==(int)ePermisos.Escritura)
+                        {
+                            panelBtnGuardar.Visible = true; 
+                        }
+                        if (PermisoUser.IdPermiso == (int)ePermisos.Anular)
+                        {
+                            panelBtnAnular.Visible = true;
+                        }
+                    }
+                }
                 return true;
             }
             catch
@@ -125,25 +122,16 @@ namespace DiseñoWeb
                 AbandonarSesion();
                 return false;
             }
-            
+
+        }
+        private void CargarGrid()
+        {
+            gvUsuarios.DataSource = BL_Usuarios.vUsuarios();
+            gvUsuarios.DataBind();
         }
         #endregion
         #region Eventos
-        protected void lnkVenta_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/Ventas.aspx");
-        }
 
-        protected void lnkProducto_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/Productos.aspx");
-        }
-
-        protected void lnkUsuario_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/Usuarios.aspx");
-        }
         #endregion
-
     }
 }

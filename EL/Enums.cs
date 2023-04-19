@@ -15,5 +15,24 @@ namespace EL
             Error = 3,
             Info = 4
         }
+        public enum eFormulario
+        {
+            AdministracionUsuarios = 3,
+            Ventas = 1,
+            Productos = 2
+        }
+        public enum eRoles
+        {
+            Administrador = 1,
+            OficialVentas =4,
+            Caja = 7,
+            JefeAlmacen = 8,
+            OficialBodega = 9,
+        }
+        public enum ePermisos
+        {
+            Escritura = 1,
+            Anular = 2
+        }
     }
 }

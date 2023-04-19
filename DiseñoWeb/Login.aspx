@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Dinamic-Web</title>
     <%-- Referencias CSS --%>
-    <link href="asset/bootstrap-5.2.0/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="asset/bootstrap-5.3.0-alpha3-dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="asset/Fontawesome/css/all.min.css" rel="stylesheet" />
     <link href="asset/SweeAlert/sweetalert.min.css" rel="stylesheet" />
     <link href="asset/CSS/Login.css" rel="stylesheet" />

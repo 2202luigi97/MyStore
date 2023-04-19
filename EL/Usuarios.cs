@@ -46,4 +46,18 @@ namespace EL
         public int? IdUsuarioActualiza { get; set; }
         public DateTime? FechaActualizacion { get; set; }
     }
+    public class vUsuarios
+    {
+        [Key]
+        public int IdUsuario { get; set; }
+        public string NombreCompleto { get; set; }
+        public string Correo { get; set; }
+        public string UserName { get; set; }
+        public bool Bloqueado { get; set; }
+        public string CuentaBloqueada { get; set; }
+        public short IntentosFallidos { get; set; }
+        public int IdRol { get; set; }
+        public string Rol { get; set; }
+
+    }
 }

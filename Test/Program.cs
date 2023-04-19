@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using EL;
 using BL;
+using Utilidades;
 
 namespace Test
 {
@@ -12,7 +13,16 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            Roles roles = new Roles();
+            byte[] Key = Encoding.UTF8.GetBytes("S3Gur1d4d1nf0rm4t1c42o23");//24 Caracteres
+            byte[] IV = Encoding.UTF8.GetBytes("Pr0y3ct03J3mpl00");//16 Caracteres
+
+            Usuarios user = new Usuarios();
+            user.IdUsuario = 5;
+            user.IdUsuarioActualiza = 5;
+            user.Password = Encripty.Encrypt("123", Key, IV);
+            BL_Usuarios.PasswordUpdate(user);
+
+            //Roles roles = new Roles();
 
 
             //roles.Rol = "Caja";

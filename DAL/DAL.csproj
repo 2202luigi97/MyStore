@@ -55,6 +55,8 @@
     <Compile Include="Conexion.cs" />
     <Compile Include="DAL_Cliente.cs" />
     <Compile Include="DAL_Roles.cs" />
+    <Compile Include="DAL_RolFormulario.cs" />
+    <Compile Include="DAL_RolPermiso.cs" />
     <Compile Include="DAL_Usuarios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

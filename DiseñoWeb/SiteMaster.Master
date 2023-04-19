@@ -1,47 +1,61 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SiteMaster.master.cs" Inherits="DiseñoWeb.SiteMaster" %>
+﻿    <%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SiteMaster.master.cs" Inherits="DiseñoWeb.SiteMaster" %>
 
 <!DOCTYPE html>
 
 <html>
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>DiseñoWeb</title>
+    <title>MyStore</title>
     <%-- Referencias CSS --%>
     <link href="asset/bootstrap-5.3.0-alpha3-dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="asset/Fontawesome/css/all.min.css" rel="stylesheet" />
     <link href="asset/SweeAlert/sweetalert.min.css" rel="stylesheet" />
+    <%-- Referencias JavaScript --%>
+    <script src="asset/JQuery/jquery.min.js"></script>
+    <script src="asset/bootstrap-5.3.0-alpha3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="asset/SweeAlert/sweetalert.all.min.js"></script>
+    <script src="asset/SweeAlert/sweetAlertStyle.js"></script>
 </head>
 <body>
-    <form id="form1" runat="server">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <asp:LinkButton runat="server" ID="lnkprincipal" OnClick="lnkprincipal_Click" class="nav-link" >Principal</asp:LinkButton>
-                    </li>
-                    <li class="nav-item">
-                        <asp:LinkButton runat="server" ID="lnkSoporte" OnClick="lnkSoporte_Click" class="nav-link" >Secundaria</asp:LinkButton>
-                    </li>
-                   <%-- <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown link
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </li>--%>
-                </ul>
-            </div>
-        </nav>
+    <form id="frmSiteMaster" runat="server">
+        <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark"">
+  <div class="container-fluid">
+      <asp:LinkButton Text="MyStore" CssClass="navbar-brand" runat="server" ID="lnkPrincipal" OnClick="lnkPrincipal_Click" />
+    <%--<a class="navbar-brand" href="#">Diseño-Web</a>--%>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <li class="nav-item">
+            <asp:LinkButton Text="Inicio" CssClass="nav-link active" aria-current="Inicio" runat="server" ID="lnkInicio" OnClick="lnkInicio_Click" />
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Formularios
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+                <asp:LinkButton Text="Ventas" CssClass="dropdown-item" runat="server" ID="lnkVentas" OnClick="lnkVentas_Click" />
+            </li>
+            <li>
+                <asp:LinkButton Text="Productos" CssClass="dropdown-item" runat="server" ID="LnkProductos" OnClick="LnkProductos_Click" />
+            </li>
+            <li>
+                <asp:LinkButton Text="Usuarios" CssClass="dropdown-item" runat="server" ID="LnkUsuarios" OnClick="LnkUsuarios_Click" />
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
 
         <div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            <asp:ScriptManager runat="server" />
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server">
                 <%-- Aqui se renderizan los formularios --%>
             </asp:ContentPlaceHolder>
         </div>

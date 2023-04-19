@@ -31,7 +31,6 @@ namespace DAL
                 return bd.Usuarios.Where(a => a.UserName.ToLower() == UserName.ToLower()).Count() > 0;
             }
         }
-
         public static bool VerificarCuentaBloqueada(string UserName)
         {
             using (BDContexto bd = new BDContexto())
@@ -64,5 +63,85 @@ namespace DAL
                 return bd.Usuarios.Where(a=>a.UserName.ToLower()==UserName.ToLower()).SingleOrDefault().IntentosFallidos;
             }
         }
+        public static Usuarios ExisteUsuario_x_UserName(string UserName)
+        {
+            using (BDContexto bd = new BDContexto())
+            {
+                return bd.Usuarios.Where(a => a.UserName.ToLower() == UserName.ToLower()).SingleOrDefault();
+            }
+        }
+        public static bool BloquearCuentaUsuario(int IdRegistro, bool Bloquear, int IdUsuarioActualiza)
+        {
+            using (BDContexto bd = new BDContexto())
+            {
+                var Registro = bd.Usuarios.Find(IdRegistro);
+                Registro.Bloqueado = Bloquear;
+                if (!Bloquear) { Registro.IntentosFallidos = 0; }
+                Registro.IdUsuarioActualiza = IdUsuarioActualiza;
+                Registro.FechaActualizacion = DateTime.Now;
+                return bd.SaveChanges() > 0;
+            }
+        }
+        public static bool SumarIntentosFallido(int IdRegistro)
+        {
+            using (BDContexto bd = new BDContexto())
+            {
+                var Registro = bd.Usuarios.Find(IdRegistro);
+                Registro.IntentosFallidos = Convert.ToInt16(Registro.IntentosFallidos + 1);
+                return bd.SaveChanges() > 0;
+            }
+        }
+        public static bool RestablecerIntentosFallido(int IdRegistro, int IdUsuarioActualiza)
+        {
+            using (BDContexto bd = new BDContexto())
+            {
+                var Registro = bd.Usuarios.Find(IdRegistro);
+                Registro.IntentosFallidos = 0;
+                Registro.IdUsuarioActualiza = IdUsuarioActualiza;
+                Registro.FechaActualizacion = DateTime.Now;
+                return bd.SaveChanges() > 0;
+            }
+        }
+        public static byte[] Encrypt(string FlatString)
+        {
+            return Encripty.Encrypt(FlatString, Key, IV);
+        }
+        public static Usuarios Registro(int IdRegistro)
+        {
+            using (BDContexto bd = new BDContexto())
+            {
+                return bd.Usuarios.Find(IdRegistro);
+            }
+        }
+        public static List<Usuarios> List(bool Activo = true)
+        {
+            using (BDContexto bd = new BDContexto())
+            {
+                return bd.Usuarios.Where(a => a.Activo == Activo).ToList();
+            }
+        }
+        public static List<vUsuarios> vUsuarios(bool Activo = true)
+        {
+            using (BDContexto bd = new BDContexto())
+            {
+                var Consulta = (from tblUsuarios in bd.Usuarios
+                                join tblRoles in bd.Roles on tblUsuarios.IdRol equals tblRoles.IdRol
+                                where tblUsuarios.Activo == Activo && tblRoles.Activo == Activo
+                                select new vUsuarios
+                                {
+                                    IdUsuario = tblUsuarios.IdUsuario,
+                                    NombreCompleto = tblUsuarios.NombreCompleto,
+                                    Correo = tblUsuarios.Correo,
+                                    UserName = tblUsuarios.UserName,
+                                    Bloqueado = tblUsuarios.Bloqueado,
+                                    CuentaBloqueada = (tblUsuarios.Bloqueado) ? "SI" : "NO",
+                                    IntentosFallidos = tblUsuarios.IntentosFallidos,
+                                    IdRol = tblUsuarios.IdRol,
+                                    Rol = tblRoles.Rol
+                                }).ToList();
+                return Consulta;
+            }
+        }
+
     }
 }

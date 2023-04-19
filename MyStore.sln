@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiseñoWeb", "DiseñoWeb\DiseñoWeb.csproj", "{FA46039F-E5CA-4993-96C0-DF8E3C4B728F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyStore", "DiseñoWeb\MyStore.csproj", "{FA46039F-E5CA-4993-96C0-DF8E3C4B728F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EL", "EL\EL.csproj", "{98AA6C30-F6EF-40AC-82C0-45B57F731F7D}"
 EndProject

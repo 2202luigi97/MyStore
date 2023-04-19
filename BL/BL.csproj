@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="BL_Cliente.cs" />
     <Compile Include="BL_Roles.cs" />
+    <Compile Include="BL_RolFormulario.cs" />
+    <Compile Include="BL_RolPermiso.cs" />
     <Compile Include="BL_Usuarios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

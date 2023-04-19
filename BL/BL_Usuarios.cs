@@ -1,4 +1,5 @@
 ﻿using DAL;
+using EL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,42 @@ namespace BL
         public static short CantidadIntentosFallidos(string UserName)
         {
             return DAL_Usuarios.CantidadIntentosFallidos(UserName);
+        }
+        public static Usuarios ExisteUsuario_x_UserName(string UserName)
+        {
+            return DAL_Usuarios.ExisteUsuario_x_UserName(UserName);
+        }
+        public static bool BloquearCuentaUsuario(int IdRegistro, bool Bloquear, int IdUsuarioActualiza)
+        {
+            return DAL_Usuarios.BloquearCuentaUsuario(IdRegistro, Bloquear, IdUsuarioActualiza);
+        }
+        public static bool SumarIntentosFallido(int IdRegistro)
+        {
+            return DAL_Usuarios.SumarIntentosFallido(IdRegistro);
+        }
+        public static bool RestablecerIntentosFallido(int IdRegistro, int IdUsuarioActualiza)
+        {
+            return DAL_Usuarios.RestablecerIntentosFallido(IdRegistro,IdUsuarioActualiza);
+        }
+        public static byte[] Encrypt(string FlatString)
+        {
+            return DAL_Usuarios.Encrypt(FlatString);
+        }
+        public static bool PasswordUpdate(Usuarios Entidad)
+        {
+            return DAL_Usuarios.PasswordUpdate(Entidad);
+        }
+        public static Usuarios Registro(int IdRegistro)
+        {
+            return DAL_Usuarios.Registro(IdRegistro);
+        }
+        public static List<Usuarios> List(bool Activo = true)
+        {
+            return DAL_Usuarios.List(Activo);
+        }
+        public static List<vUsuarios> vUsuarios(bool Activo = true)
+        {
+            return DAL_Usuarios.vUsuarios(Activo);
         }
     }
 }
