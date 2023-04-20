@@ -142,6 +142,64 @@ namespace DAL
                 return Consulta;
             }
         }
+        public static vUsuarios vUsuario(int IdRegistro)
+        {
+            using (BDContexto bd = new BDContexto())
+            {
+                var Consulta = (from tblUsuarios in bd.Usuarios
+                                join tblRoles in bd.Roles on tblUsuarios.IdRol equals tblRoles.IdRol
+                                where tblUsuarios.Activo == true && tblRoles.Activo == true && tblUsuarios.IdUsuario == IdRegistro
+                                select new vUsuarios
+                                {
+                                    IdUsuario = tblUsuarios.IdUsuario,
+                                    NombreCompleto = tblUsuarios.NombreCompleto,
+                                    Correo = tblUsuarios.Correo,
+                                    UserName = tblUsuarios.UserName,
+                                    Bloqueado = tblUsuarios.Bloqueado,
+                                    CuentaBloqueada = (tblUsuarios.Bloqueado) ? "SI" : "NO",
+                                    IntentosFallidos = tblUsuarios.IntentosFallidos,
+                                    IdRol = tblUsuarios.IdRol,
+                                    Rol = tblRoles.Rol
+                                }).SingleOrDefault();
+                return Consulta;
+            }
+        }
+        public static bool ExisteUserNameUpdate(string UserName, int IdRegistro)
+        {
+            using (BDContexto bd = new BDContexto())
+            {
+                return bd.Usuarios.Where(a => a.UserName.ToLower() == UserName.ToLower() && a.IdUsuario!=IdRegistro).Count() > 0;
+            }
+        }
+        public static bool Update(Usuarios Entidad, bool UpdatePassword)
+        {
+            using (BDContexto bd = new BDContexto())
+            {
+                var RegistroBD = bd.Usuarios.Find(Entidad.IdUsuario);
+                RegistroBD.NombreCompleto = Entidad.NombreCompleto;
+                RegistroBD.Correo = Entidad.Correo;
+                RegistroBD.UserName = Entidad.UserName;
+                if (UpdatePassword)
+                {
+                    RegistroBD.Password = Entidad.Password;
+                }
+                RegistroBD.IdRol = Entidad.IdRol;
+                RegistroBD.IdUsuarioActualiza = Entidad.IdUsuarioActualiza;
+                RegistroBD.FechaActualizacion = DateTime.Now;
+                return bd.SaveChanges() > 0;
+            }
+        }
+        public static bool Delete(Usuarios Entidad)
+        {
+            using (BDContexto bd = new BDContexto())
+            {
+                var RegistroBD = bd.Usuarios.Find(Entidad.IdUsuario);
+                RegistroBD.Activo = false;
+                RegistroBD.IdUsuarioActualiza = Entidad.IdUsuarioActualiza;
+                RegistroBD.FechaActualizacion = DateTime.Now;
+                return bd.SaveChanges() > 0;
+            }
+        }
 
     }
 }

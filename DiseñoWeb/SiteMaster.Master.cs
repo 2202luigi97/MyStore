@@ -88,7 +88,7 @@ namespace DiseñoWeb
                 List<RolFormularios> FormulariosUser = (List<RolFormularios>)Session["RolFormularioGl"];
                 if(FormulariosUser==null) 
                 {
-                    AbandonarSesion();
+                    AbandonarSesion(false);
                     return false;
                 }
                 if (!(FormulariosUser.Count > 0))
@@ -110,10 +110,6 @@ namespace DiseñoWeb
         }
         #endregion
         #region Evento de los controles
-        protected void lnkInicio_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/Principal.aspx");
-        }
         protected void lnkPrincipal_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Principal.aspx");
@@ -132,6 +128,11 @@ namespace DiseñoWeb
         {
             Response.Redirect("~/Usuarios.aspx");
         }
-        #endregion
+        protected void lnkSalir_Click(object sender, EventArgs e)
+        {
+            AbandonarSesion(false);
+            Response.Redirect("~/Login.aspx");
+        }
+        #endregion   
     }
 }

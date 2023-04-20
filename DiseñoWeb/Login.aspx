@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Dinamic-Web</title>
+    <title>MyStore</title>
     <%-- Referencias CSS --%>
     <link href="asset/bootstrap-5.3.0-alpha3-dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="asset/Fontawesome/css/all.min.css" rel="stylesheet" />
@@ -23,11 +23,11 @@
                     <div class="card" style="background-color: #F2F2F2; border-radius: 15px;">
                         <div class="card-body">
                             <div class="ImageTop">
-                                <img src="asset/image/1523210170727.png" width="350" />
+                                <img src="asset/image/99b0e593f9237abf16df5cb1b1a87735.png" width="350" />
                             </div>
-                            <div class="Titulo">
-                                <h1>Dinamic-Web</h1>
-                            </div>
+                            <%--<div class="Titulo">
+                                <h1>MyStore</h1>
+                            </div>--%>
                             <div class="form-floating mb-3">
                                 <asp:TextBox runat="server" class="form-control" ID="txtUsuario" placeholder="Usuario"></asp:TextBox>
                                 <label for="floatingInput">Usuario</label>

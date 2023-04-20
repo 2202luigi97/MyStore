@@ -102,6 +102,7 @@ namespace DiseñoWeb
                 panelBtnLimpiar.Visible = true;
                 panelBtnGuardar.Visible = false;
                 panelBtnAnular.Visible = false;
+                panelBtnLock.Visible = false;
                 if (PermisosUser.Count > 0)
                 {
                     foreach (var PermisoUser in PermisosUser)
@@ -113,6 +114,10 @@ namespace DiseñoWeb
                         if (PermisoUser.IdPermiso == (int)ePermisos.Anular)
                         {
                             panelBtnAnular.Visible = true;
+                        }
+                        if (PermisoUser.IdPermiso == (int)ePermisos.Bloqueo)
+                        {
+                            panelBtnLock.Visible = true;
                         }
                     }
                 }
@@ -127,6 +132,12 @@ namespace DiseñoWeb
         }
         private void CargarGrid()
         {
+            if (!(string.IsNullOrEmpty(txtBuscar.Text)||string.IsNullOrWhiteSpace(txtBuscar.Text)) && txtBuscar.Text.Length > 2)
+            {
+                gvUsuarios.DataSource = BL_Usuarios.vUsuarios().Where(a=>a.NombreCompleto.ToLower().Contains(txtBuscar.Text.ToLower()) ||a.Correo.ToLower().Contains(txtBuscar.Text.ToLower()) ||a.UserName.ToLower().Contains(txtBuscar.Text.ToLower())).ToList();
+                gvUsuarios.DataBind();
+                return;
+            }
             gvUsuarios.DataSource = BL_Usuarios.vUsuarios();
             gvUsuarios.DataBind();
         }
@@ -147,6 +158,40 @@ namespace DiseñoWeb
                 Mensaje("Error al cargar los roles", eMessage.Error);
             }
         }
+        private void CargarControles(int IdRegistro)
+        {
+            try
+            {
+                vUsuarios vusuario = BL_Usuarios.vUsuario(IdRegistro);
+                if (vusuario == null)
+                {
+                    Mensaje("No se encontraron datos para el registro seleccionado", eMessage.Error);
+                    return;
+                }
+                HF_IdUsuario.Value = vusuario.IdUsuario.ToString();
+                txtNombre.Text = vusuario.NombreCompleto;
+                txtCorreo.Text = vusuario.Correo;
+                txtUsuario.Text = vusuario.UserName;
+                txtContraseña.Text = string.Empty;
+                ddlRol.SelectedValue = vusuario.IdRol.ToString();
+                lnkLock.Text = (vusuario.Bloqueado) ? "Desbloquear" : "Bloquear";
+
+            }
+            catch
+            {
+                Mensaje("Error al cargar el registro", eMessage.Error);
+            }
+        }
+        private void ResetControles()
+        {
+            txtNombre.Text = string.Empty;
+            txtCorreo.Text = string.Empty;
+            txtContraseña.Text = string.Empty;
+            txtUsuario.Text = string.Empty;
+            ddlRol.SelectedIndex = 0;
+            HF_IdUsuario.Value = "0";
+            lnkLock.Text = "Bloquear";
+        }
         private bool ValidarInsertar()
         {
             if (string.IsNullOrEmpty(txtNombre.Text) || string.IsNullOrWhiteSpace(txtNombre.Text))
@@ -159,7 +204,7 @@ namespace DiseñoWeb
                 Mensaje("Ingrese el Correo del usuario", eMessage.Alerta);
                 return false;
             }
-            if(!General.CorreoEsValido(txtCorreo.Text))
+            if (!General.CorreoEsValido(txtCorreo.Text))
             {
                 Mensaje("Ingrese un correo válido", eMessage.Alerta);
                 return false;
@@ -169,7 +214,7 @@ namespace DiseñoWeb
                 Mensaje("Ingrese el login del usuario", eMessage.Alerta);
                 return false;
             }
-            if (BL_Usuarios.ExisteUserName(txtUsuario.Text)) 
+            if (BL_Usuarios.ExisteUserName(txtUsuario.Text))
             {
                 Mensaje("El login Ya existe en el Sistema", eMessage.Alerta);
                 return false;
@@ -184,37 +229,187 @@ namespace DiseñoWeb
                 Mensaje("La contraseña no cumple con los requisitos", eMessage.Alerta);
                 return false;
             }
-            if (ddlRol.SelectedIndex== 0) 
+            if (ddlRol.SelectedIndex == 0)
             {
                 Mensaje("Seleccione el rol del usuario", eMessage.Alerta);
                 return false;
             }
             return true;
         }
-        private bool ValidarActualizar()
+        private bool ValidarActualizar(int IdRegistro)
         {
+            if (string.IsNullOrEmpty(txtNombre.Text) || string.IsNullOrWhiteSpace(txtNombre.Text))
+            {
+                Mensaje("Ingrese el nombre completo", eMessage.Alerta);
+                return false;
+            }
+            if (string.IsNullOrEmpty(txtCorreo.Text) || string.IsNullOrWhiteSpace(txtCorreo.Text))
+            {
+                Mensaje("Ingrese el Correo del usuario", eMessage.Alerta);
+                return false;
+            }
+            if (!General.CorreoEsValido(txtCorreo.Text))
+            {
+                Mensaje("Ingrese un correo válido", eMessage.Alerta);
+                return false;
+            }
+            if (string.IsNullOrEmpty(txtUsuario.Text) || string.IsNullOrWhiteSpace(txtUsuario.Text))
+            {
+                Mensaje("Ingrese el login del usuario", eMessage.Alerta);
+                return false;
+            }
+            if (BL_Usuarios.ExisteUserNameUpdate(txtUsuario.Text,IdRegistro))
+            {
+                Mensaje("El login Ya existe en el Sistema", eMessage.Alerta);
+                return false;
+            }
+            if (!(string.IsNullOrEmpty(txtContraseña.Text) || string.IsNullOrWhiteSpace(txtContraseña.Text)))
+            {
+                if (!General.validarComplejidadPassword(txtContraseña.Text))
+                {
+                    Mensaje("La contraseña no cumple con los requisitos", eMessage.Alerta);
+                    return false;
+                }
+            }
+            if (ddlRol.SelectedIndex == 0)
+            {
+                Mensaje("Seleccione el rol del usuario", eMessage.Alerta);
+                return false;
+            }
             return true;
         }
         private void Guardar()
         {
             try
             {
+                int IdUsuarioSistema = (int)General.ValidarEnteros(Session["IdUsuarioGl"]);
+                if (!(IdUsuarioSistema > 0))
+                {
+                    Mensaje("Datos del usuario no encontrados", eMessage.Alerta);
+                    return;
+                }
                 int IdRegistro = (int)General.ValidarEnteros(HF_IdUsuario.Value);
+                Usuarios user = new Usuarios();
                 if (IdRegistro > 0)
                 {
                     //Actualizando
+                    if(ValidarActualizar(IdRegistro)) 
+                    {
+                        bool UpdatePassword = false;
+                        user.IdUsuario = IdRegistro;
+                        user.NombreCompleto = txtNombre.Text;
+                        user.Correo = txtCorreo.Text;
+                        user.UserName = txtUsuario.Text;
+                        if (!(string.IsNullOrEmpty(txtContraseña.Text) || string.IsNullOrWhiteSpace(txtContraseña.Text)))
+                        { 
+                            user.Password = BL_Usuarios.Encrypt(txtContraseña.Text);
+                            UpdatePassword= true;
+                        }
+                        user.IdRol = (int)General.ValidarEnteros(ddlRol.SelectedValue);
+                        user.IdUsuarioActualiza = IdUsuarioSistema;
+                        if (BL_Usuarios.Update(user,UpdatePassword))
+                        {
+                            ResetControles();
+                            CargarGrid();
+                            Mensaje("Registro Actualizado Correctamente", eMessage.Exito);
+                            return;
+                        }
+                        Mensaje("Registro no Actualizado", eMessage.Error);
+                        return;
+                    }
                     return;
                 }
                 //Agregando
                 if (ValidarInsertar())
                 {
+                    
+                    user.NombreCompleto = txtNombre.Text;
+                    user.Correo = txtCorreo.Text;
+                    user.UserName = txtUsuario.Text;
+                    user.Password = BL_Usuarios.Encrypt(txtContraseña.Text);
+                    user.IdRol = (int)General.ValidarEnteros(ddlRol.SelectedValue);
+                    user.IdUsuarioRegistra = IdUsuarioSistema;
+                    if (BL_Usuarios.Insert(user).IdUsuario > 0)
+                    {
+                        ResetControles();
+                        CargarGrid();
+                        Mensaje("Registro Guardado Correctamente", eMessage.Exito);
+                        return;
+                    }
+                    Mensaje("Registro no Guardado", eMessage.Error);
                     return;
                 }
+                Mensaje("No se realizó ninguna operación", eMessage.Error);
             }
-            catch 
+            catch
             {
-           
-            }         
+                Mensaje("Error en el sistema", eMessage.Error);
+            }
+        }
+        private void Anular()
+        {
+            try
+            {
+                int IdUsuarioSistema = (int)General.ValidarEnteros(Session["IdUsuarioGl"]);
+
+                if (!(IdUsuarioSistema > 0))
+                {
+                    Mensaje("Datos del Usuario de sistema no encontrados", eMessage.Alerta);
+                    return;
+                }
+
+                int IdRegistro = (int)General.ValidarEnteros(HF_IdUsuario.Value);
+                Usuarios User = new Usuarios();
+
+                if (IdRegistro > 0)
+                {
+                    User.IdUsuario = IdRegistro;
+                    User.IdUsuarioActualiza = IdUsuarioSistema;
+                    if (BL_Usuarios.Delete(User))
+                    {
+                        ResetControles();
+                        CargarGrid();
+                        Mensaje("Registro anulado Correctamente", eMessage.Exito);
+                        return;
+                    }
+                    Mensaje("Error al anular el registro", eMessage.Error);
+                    return;
+                }
+                Mensaje("Asegurese de seleccionar un registro para anular", eMessage.Alerta);
+            }
+            catch
+            {
+                Mensaje("Error al anular el registro", eMessage.Error);
+            }
+        }
+        private void Bloqueo()
+        {
+            try
+            {
+                int IdUsuarioSistema = (int)General.ValidarEnteros(Session["IdUsuarioGl"]);
+
+                if (!(IdUsuarioSistema > 0))
+                {
+                    Mensaje("Datos del Usuario de sistema no encontrados", eMessage.Alerta);
+                    return;
+                }
+                int IdRegistro = (int)General.ValidarEnteros(HF_IdUsuario.Value);
+                bool Bloqueo = (lnkLock.Text == "Desbloquear") ? false : true;
+
+                if (BL_Usuarios.BloquearCuentaUsuario(IdRegistro, Bloqueo, IdUsuarioSistema))
+                {
+                    string Operacion = (Bloqueo) ? "Bloqueado" : "Desbloqueado";
+                    CargarGrid();
+                    ResetControles();
+                    Mensaje($"Registro {Operacion} Correctamente", eMessage.Exito);
+                    return;
+                }
+                Mensaje("Error al realizar la operación en el registro", eMessage.Error);
+            }
+            catch
+            {
+                Mensaje("Error al realizar la operación en el registro", eMessage.Error);
+            }
         }
         #endregion
 
@@ -239,7 +434,7 @@ namespace DiseñoWeb
         }
         protected void lnkLimpiar_Click(object sender, EventArgs e)
         {
-
+            ResetControles();
         }
         protected void lnkGuardar_Click(object sender, EventArgs e)
         {
@@ -247,8 +442,51 @@ namespace DiseñoWeb
         }
         protected void lnkAnular_Click(object sender, EventArgs e)
         {
+            Anular();
+        }
+        protected void gvUsuarios_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                int RowIndex = gvUsuarios.SelectedRow.RowIndex;
+                int IdRegistro = (int)General.ValidarEnteros(gvUsuarios.DataKeys[RowIndex]["IdUsuario"].ToString());
+                if (!(IdRegistro > 0))
+                {
+                    Mensaje("El ID del registro seleccionado fue cero", eMessage.Error);
+                    return;
+                }
 
+                CargarControles(IdRegistro);
+
+            }
+            catch
+            {
+                Mensaje("Error al seleccionar el registro", eMessage.Error);
+            }
+        }
+        protected void gvUsuarios_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvUsuarios.PageIndex = e.NewPageIndex;
+            CargarGrid();
+            ResetControles();
+        }
+        protected void lnkLock_Click(object sender, EventArgs e)
+        {
+            Bloqueo();
+        }
+        protected void lnkBuscar_Click(object sender, EventArgs e)
+        {
+                CargarGrid();
+        }
+        protected void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            if (!(string.IsNullOrEmpty(txtBuscar.Text) || string.IsNullOrWhiteSpace(txtBuscar.Text)) && txtBuscar.Text.Length > 2)
+            {
+                CargarGrid();
+            }
         }
         #endregion
+
+
     }
 }

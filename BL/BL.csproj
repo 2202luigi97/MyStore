@@ -41,7 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BL_Categorias.cs" />
     <Compile Include="BL_Cliente.cs" />
+    <Compile Include="BL_Productos.cs" />
     <Compile Include="BL_Roles.cs" />
     <Compile Include="BL_RolFormulario.cs" />
     <Compile Include="BL_RolPermiso.cs" />

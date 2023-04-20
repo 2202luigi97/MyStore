@@ -52,24 +52,40 @@
                                 <asp:LinkButton Text="Guardar" runat="server" CssClass="w-100 btn" BackColor="#49bea5" ForeColor="White" ID="lnkGuardar" OnClick="lnkGuardar_Click" />
                             </asp:Panel>
                             <asp:Panel runat="server" ID="panelBtnAnular" CssClass="col-md-2" Visible="false">
-                                <asp:LinkButton Text="Anular" runat="server" CssClass="w-100 btn" BackColor="#fd4839" ForeColor="White" ID="lnkAnular" OnClick="lnkAnular_Click" />
+                                <asp:LinkButton Text="Anular" runat="server" CssClass="w-100 btn" BackColor="#ede385" ForeColor="Black" ID="lnkAnular" OnClick="lnkAnular_Click" />
+                            </asp:Panel>
+                            <asp:Panel runat="server" ID="panelBtnLock" CssClass="col-md-2" Visible="false">
+                                <asp:LinkButton Text="Bloquear" runat="server" CssClass="w-100 btn" BackColor="#fd4839" ForeColor="White" ID="lnkLock" OnClick="lnkLock_Click" />
                             </asp:Panel>
                         </div>
                         <%-- Grid --%>
-                        <div class="row" style="margin-top:15px;overflow:scroll">
+                        <div class="row" style="margin-top:15px">
+                            <div class="col-md-4" style="margin-top: 10px">
+                                <label>Buscar</label>
+                                <div class="input-group">
+                                    <asp:TextBox runat="server" ID="txtBuscar" TextMode="Search" MaxLength="20" CssClass="form-control" OnTextChanged="txtBuscar_TextChanged" AutoPostBack="true" />
+                                    <asp:LinkButton runat="server" ID="lnkBuscar" CssClass="btn btn-primary" OnClick="lnkBuscar_Click">
+                                        <i class="fas fa-search"></i>
+                                    </asp:LinkButton>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 10px; overflow: scroll">
                             <asp:HiddenField runat="server" ID="HF_IdUsuario" Value="0" />
-                            <asp:GridView runat="server" 
+                            <asp:GridView runat="server"
                                 ID="gvUsuarios"
-                                 AllowPaging="true"
-                                 PageSize="5"
-                                 CssClass="table table-bordered table-hover"
-                                 AutoGenerateColumns="false"
-                                 EmptyDataText="Sin registros para mostrar"
-                                 DataKeyNames="IdUsuario,IdRol"
-                                 AutoGenerateSelectButton="true">
+                                AllowPaging="true"
+                                PageSize="3"
+                                CssClass="table table-bordered table-hover"
+                                AutoGenerateColumns="false"
+                                EmptyDataText="Sin registros para mostrar"
+                                DataKeyNames="IdUsuario,IdRol"
+                                AutoGenerateSelectButton="true" 
+                                OnSelectedIndexChanged="gvUsuarios_SelectedIndexChanged" OnPageIndexChanging="gvUsuarios_PageIndexChanging">
                                 <HeaderStyle BackColor="#ede385" HorizontalAlign="Center" />
                                 <RowStyle HorizontalAlign="Center" />
-                                <SelectedRowStyle BackColor="#c0c0c0"/>
+                                <SelectedRowStyle BackColor="#c0c0c0" />
+                                <PagerStyle CssClass="pagination-ys" />
                                 <Columns>
                                     <asp:BoundField DataField="NombreCompleto" HeaderText="Nombre y Apellido" />
                                     <asp:BoundField DataField="Correo" HeaderText="Correo" />

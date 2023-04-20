@@ -97,6 +97,7 @@
     <Content Include="asset\bootstrap-5.3.0-alpha3-dist\js\bootstrap.js" />
     <Content Include="asset\bootstrap-5.3.0-alpha3-dist\js\bootstrap.min.js" />
     <Content Include="asset\CSS\Login.css" />
+    <Content Include="asset\CSS\Paginación.css" />
     <Content Include="asset\CSS\Principal.css" />
     <Content Include="asset\Fontawesome\css\all.css" />
     <Content Include="asset\Fontawesome\css\all.min.css" />
@@ -2144,6 +2145,7 @@
     <Content Include="asset\Fontawesome\svgs\solid\yin-yang.svg" />
     <Content Include="asset\Fontawesome\svgs\solid\z.svg" />
     <Content Include="asset\image\1523210170727.png" />
+    <Content Include="asset\image\99b0e593f9237abf16df5cb1b1a87735.png" />
     <Content Include="asset\image\Login-Top.png" />
     <Content Include="asset\JQuery\jquery.js" />
     <Content Include="asset\JQuery\jquery.min.js" />

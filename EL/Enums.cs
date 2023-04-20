@@ -27,12 +27,13 @@ namespace EL
             OficialVentas =4,
             Caja = 7,
             JefeAlmacen = 8,
-            OficialBodega = 9,
+            OficialBodega = 9
         }
         public enum ePermisos
         {
             Escritura = 1,
-            Anular = 2
+            Anular = 2,
+            Bloqueo = 3
         }
     }
 }

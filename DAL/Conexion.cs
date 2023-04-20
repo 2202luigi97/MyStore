@@ -8,7 +8,7 @@ namespace DAL
         private static string Servidor = @"DESKTOP-FL8S9TQ\SQLEXPRESS";
         private static string Usuario = "luigi";
         private static string Password = "&cuadra&";
-        private static string BaseDatos = "Clientes";
+        private static string BaseDatos = "MyStore";
 
         public static string ConexionString(bool sqlAutenticaton = true)
         {

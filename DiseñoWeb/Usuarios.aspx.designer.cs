@@ -150,6 +150,42 @@ namespace DiseñoWeb
         protected global::System.Web.UI.WebControls.LinkButton lnkAnular;
 
         /// <summary>
+        /// Control panelBtnLock.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel panelBtnLock;
+
+        /// <summary>
+        /// Control lnkLock.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkLock;
+
+        /// <summary>
+        /// Control txtBuscar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBuscar;
+
+        /// <summary>
+        /// Control lnkBuscar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkBuscar;
+
+        /// <summary>
         /// Control HF_IdUsuario.
         /// </summary>
         /// <remarks>

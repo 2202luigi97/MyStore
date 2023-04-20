@@ -53,7 +53,9 @@
   <ItemGroup>
     <Compile Include="BDContexto.cs" />
     <Compile Include="Conexion.cs" />
+    <Compile Include="DAL_Categorias.cs" />
     <Compile Include="DAL_Cliente.cs" />
+    <Compile Include="DAL_Productos.cs" />
     <Compile Include="DAL_Roles.cs" />
     <Compile Include="DAL_RolFormulario.cs" />
     <Compile Include="DAL_RolPermiso.cs" />
